@@ -1,7 +1,14 @@
 import axios from "axios"
 
 function forecast(city, state, country, apiKey) {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&units=imperial&appid=${apiKey}`
+    let url = ``
+
+    if (country === undefined) {
+        country = state
+        url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=imperial&appid=${apiKey}`
+    } else {
+        url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&units=imperial&appid=${apiKey}`
+    }
 
     axios.get(url)
         .then(response => {
@@ -17,3 +24,4 @@ function forecast(city, state, country, apiKey) {
 }
 
 export default forecast
+
