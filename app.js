@@ -1,5 +1,9 @@
 import forecast from "./utils/forecast.js"
 
-forecast(process.argv[2], process.argv[3], process.argv[4], "Enter API KEY")
+const location = {
+    city: process.argv[2],
+    state: process.argv[3],
+    country: process.argv[4]
+}
 
-console.log(process.argv[2])
+forecast(location, "ENTER API KEY")

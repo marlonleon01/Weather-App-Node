@@ -1,6 +1,6 @@
 import axios from "axios"
 
-function forecast(city, state, country, apiKey) {
+function forecast({city, state, country}, apiKey) {
     let url = ``
 
     if (city === undefined) {
