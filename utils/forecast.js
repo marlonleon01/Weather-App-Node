@@ -5,11 +5,11 @@ function forecast(city, state, country, apiKey) {
 
     axios.get(url)
         .then(response => {
-            console.log(response.data)
+            console.log(`It is currently ${response.data.main.temp} and feels like ${response.data.main.feels_like}.`)
         })
         .catch(error => {
             if (error.response && error.response.data) {
-                console.log(error.response.data.message)
+                console.log("Unable to find location")
             } else {
                 console.log("Unable to connect to the internet")
             }
