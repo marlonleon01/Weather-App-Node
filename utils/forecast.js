@@ -3,7 +3,11 @@ import axios from "axios"
 function forecast(city, state, country, apiKey) {
     let url = ``
 
-    if (country === undefined) {
+    if (city === undefined) {
+        console.log("Please provide a city!")
+    } else if (country === undefined && state === undefined) {
+        url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+    } else if (country === undefined) {
         country = state
         url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=imperial&appid=${apiKey}`
     } else {
