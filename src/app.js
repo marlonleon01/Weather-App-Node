@@ -7,7 +7,15 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename) 
 const publicDirectoryPath = path.join(__dirname, "../public")
 
+app.set("view engine", "hbs")
 app.use(express.static(publicDirectoryPath))
+
+app.get("", (req, res) => {
+    res.render("index", {
+        title: "Weather App",
+        name: "Marlon Leon"
+    })
+})
 
 app.get("/weather", (req, res) => {
     res.send({
