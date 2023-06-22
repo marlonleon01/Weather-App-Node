@@ -28,4 +28,3 @@ function forecast({city, state, country}, apiKey) {
 }
 
 export default forecast
-
