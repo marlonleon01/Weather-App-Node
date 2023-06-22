@@ -44,8 +44,24 @@ app.get("/help", (req, res) => {
 
 app.get("/weather", (req, res) => {
     res.send({
-        forecase: "Raining",
+        forecast: "Raining",
         location: "Miami"
+    })
+})
+
+app.get("/help/*", (req, res) => {
+    res.render("404", {
+        title: "404 Error",
+        errorMessage: "Help article not found",
+        name: "Marlon Leon"
+    })
+})
+
+app.get("*", (req, res) => {
+    res.render("404", {
+        title: "404 Error",
+        errorMessage: "Page not found",
+        name: "Marlon Leon"
     })
 })
 
