@@ -2,6 +2,7 @@ import path, {dirname} from "path";
 import { fileURLToPath } from "url"
 import express from "express";
 import hbs from "hbs"
+import forecast from "../utils/forecast.js";
 
 const app = express()
 
@@ -43,9 +44,34 @@ app.get("/help", (req, res) => {
 })
 
 app.get("/weather", (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: "You must provide an address"
+        })
+    }
+
+    forecast(req.query.address, "Enter API KEY", (error, data) => {
+        if (error) {
+            return res.send({error})
+        }
+
+        res.send({
+            forecast: data.forecast,
+            location: `${data.city}, ${data.country}`,
+            address: req.query.address
+        })
+    })
+})
+
+app.get("/products", (req, res) => {
+    if (!req.query.search) {
+        return res.send({
+            error: "You must provide a search term"
+        })
+    }
+
     res.send({
-        forecast: "Raining",
-        location: "Miami"
+        products: []
     })
 })
 
