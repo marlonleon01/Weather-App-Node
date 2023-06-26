@@ -44,7 +44,35 @@ app.get("/help", (req, res) => {
 })
 
 app.get("/weather", (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: "You must provide an address"
+        })
+    }
+
+    forecast(req.query.address, "Enter Your API Key", (error, data) => {
+        if (error) {
+            return res.send({error})
+        }
+
+        res.send({
+            forecast: data.forecast,
+            location: `${data.city}, ${data.country}`,
+            address: req.query.address
+        })
+    })
+})
+
+app.get("/products", (req, res) => {
+    if (!req.query.search) {
+        return res.send({
+            error: "You must provide a search term"
+        })
+    }
+
     res.send({
+        forecast: "Raining",
+        location: "Miami",
         products: []
     })
 })
