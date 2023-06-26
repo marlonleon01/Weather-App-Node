@@ -1,9 +1,10 @@
 import forecast from "./utils/forecast.js"
 
-const location = {
-    city: process.argv[2],
-    state: process.argv[3],
-    country: process.argv[4]
-}
 
-forecast(location, "ENTER API KEY")
+forecast("Miami", "5703d78c1b92bdddcfcf6201163a5d5f", (error, data) => {
+    if (error) {
+        return console.log(error)
+    }
+
+    console.log(data)
+})
