@@ -6,10 +6,6 @@ body {
     padding: 0 16px;
 }
 
-img {
-    width: 250px;
-}
-
 footer {
     color: #888888;
     border-top: 1px solid #eeeeee;
@@ -30,4 +26,8 @@ header a {
     color: #888888;
     margin-right: 16px;
     text-decoration: none;
+}
+
+.portrait {
+    width: 250px;
 }
