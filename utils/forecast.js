@@ -10,7 +10,11 @@ function forecast(city, apiKey, callback) {
         
         axios.get(url)
         .then(response => {
-            callback(undefined,`It is currently ${response.data.main.temp} and feels like ${response.data.main.feels_like}.`)
+            callback(undefined, {
+                city: response.data.name, 
+                country: response.data.sys.country, 
+                forecast: `It is currently ${response.data.main.temp} and feels like ${response.data.main.feels_like}.`
+            })
         })
         .catch(error => {
             if (error.response && error.response.data) {
