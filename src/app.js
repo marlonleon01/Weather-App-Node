@@ -3,8 +3,10 @@ import { fileURLToPath } from "url"
 import express from "express";
 import hbs from "hbs"
 import forecast from "../utils/forecast.js";
+import "dotenv/config"
 
 const app = express()
+const port = process.env.PORT || 3000
 
 //Define paths for Express config
 const __filename = fileURLToPath(import.meta.url)
@@ -37,7 +39,7 @@ app.get("/about", (req, res) => {
 
 app.get("/help", (req, res) => {
     res.render("help", {
-        helpMessage: "Help message",
+        helpText: "This is some helpful text",
         title: "Help",
         name: "Marlon Leon"
     })
@@ -50,7 +52,7 @@ app.get("/weather", (req, res) => {
         })
     }
 
-    forecast(req.query.address, "Enter Your API Key", (error, data) => {
+    forecast(req.query.address, process.env.apiKey, (error, data) => {
         if (error) {
             return res.send({error})
         }
@@ -93,6 +95,6 @@ app.get("*", (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log("Server is up on port 3000")
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`)
 })
