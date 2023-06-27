@@ -1,19 +1,23 @@
 const weatherForm = document.getElementById("weather-form")
 const locationInput = document.getElementById("location-input")
-
-async function fetchWeather(url) {
-    try {
-        const response = await fetch(url)
-        const data = await response.json()
-        console.log(data)
-    } catch (error) {
-        console.log(error)
-    }
-}
+const messageOne = document.getElementById("message-1")
+const messageTwo = document.getElementById("message-2")
 
 weatherForm.addEventListener("submit", (e) => {
     e.preventDefault()
     const location = locationInput.value
 
-    fetchWeather(`http://localhost:3000/weather?address=${location}`)
+    messageOne.textContent = "Loading Weather Forecast"
+    messageTwo.textContent = ""
+
+    fetch(`http://localhost:3000/weather?address=${location}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                messageOne.textContent = data.error
+            } else {
+                messageOne.textContent = data.forecast
+                messageTwo.textContent = data.location
+            }
+        })
 })
