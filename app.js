@@ -1,7 +1,7 @@
 import forecast from "./utils/forecast.js"
 
 
-forecast(city, apiKey, (error, data) => {
+forecast("Miami", "Enter Your API Key", (error, data) => {
     if (error) {
         return console.log(error)
     }
