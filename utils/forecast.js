@@ -13,7 +13,7 @@ function forecast(city, apiKey, callback) {
             callback(undefined, {
                 city: response.data.name, 
                 country: response.data.sys.country, 
-                forecast: `It is currently ${response.data.main.temp} and feels like ${response.data.main.feels_like}.`
+                forecast: `It is currently ${response.data.main.temp} and feels like ${response.data.main.feels_like}. The humidity is ${response.data.main.humidity}%.`
             })
         })
         .catch(error => {
